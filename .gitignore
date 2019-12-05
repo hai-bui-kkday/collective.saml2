@@ -1,0 +1,29 @@
+*.pyo
+*.pyc
+*.egg
+*.swp
+*.egg-info
+*.mo
+*~
+src/collective/saml2/browser/BPM.py
+
+# Project folder
+bin
+include
+lib
+develop-eggs
+downloads
+parts
+prod
+var
+dist
+design
+
+# Application config
+.idea
+.project
+.pydevproject
+projects
+.codeintel
+.installed.cfg
+.mr.developer.cfg
