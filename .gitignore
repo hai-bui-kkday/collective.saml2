@@ -5,7 +5,6 @@
 *.egg-info
 *.mo
 *~
-src/collective/saml2/browser/BPM.py
 
 # Project folder
 bin
