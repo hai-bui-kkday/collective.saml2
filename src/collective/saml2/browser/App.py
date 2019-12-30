@@ -12,7 +12,7 @@ import urllib2
 class Login(BrowserView):
 
     _template = ViewPageTemplateFile('app_login.pt')
-    token = ''
+    data = ''
 
     def __call__(self):
         """"""
@@ -22,16 +22,19 @@ class Login(BrowserView):
             alsoProvides(self.request, IDisableCSRFProtection)
 
             current = api.user.get_current()
-            email = current.id
-            if not email:
-                raise ValueError("email is required")
+            id = current.id
+            if not id:
+                raise ValueError("id is required")
 
             acl_users = getToolByName(self.context, "acl_users")
             acl_users.jwt_auth.store_tokens = True
             timeout = api.portal.get_registry_record('kkday.app_login.timeout', default=3600)
 
-            token = acl_users.jwt_auth.create_token(email, timeout=timeout)
-            self.token = token
+            token = acl_users.jwt_auth.create_token(id, timeout=timeout)
+            self.data = json.dumps({
+                "token": token,
+                "id": id
+            })
 
             return self._template()
 

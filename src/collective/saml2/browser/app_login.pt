@@ -6,11 +6,11 @@
     </head>
     <body>
         <script tal:define="
-            token          python:view.token;"
+            data          python:view.data;"
         >
             window.onload = function() {
                 if (window.webkit && window.webkit.messageHandlers) {
-                    window.webkit.messageHandlers.userLogin.postMessage("${token}");
+                    window.webkit.messageHandlers.userLogin.postMessage(${data});
                 }
             };
         </script>
