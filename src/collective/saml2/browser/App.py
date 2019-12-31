@@ -27,10 +27,8 @@ class Login(BrowserView):
                 raise ValueError("id is required")
 
             acl_users = getToolByName(self.context, "acl_users")
-            acl_users.jwt_auth.store_tokens = True
-            timeout = api.portal.get_registry_record('kkday.app_login.timeout', default=3600)
 
-            token = acl_users.jwt_auth.create_token(id, timeout=timeout)
+            token = acl_users.jwt_auth.create_token(id)
             self.data = json.dumps({
                 "token": token,
                 "id": id
